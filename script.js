@@ -84,7 +84,7 @@ function stopProgress() {
 }
 
 /* ---------- IA: chamada Groq ---------- */
-async function callGroq(messages, model = "llama-3.3-70b-versatile") {
+async function callGroq(messages, model = "openai/gpt-oss-120b") {
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
