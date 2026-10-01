@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXAR SAAS FACTORY</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">N</div>
+      <div>
+        <h1>NEXAR</h1>
+        <span>SAAS FACTORY</span>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-item active" data-view="novo">✨ Novo SaaS</button>
+      <button class="nav-item" data-view="projetos">📁 Projetos</button>
+      <button class="nav-item" data-view="upload">🖼️ Upload de Imagem</button>
+      <button class="nav-item" data-view="firebase">🔥 Configuração Firebase</button>
+      <button class="nav-item" data-view="config">⚙️ Configurações</button>
+    </nav>
+    <div class="status" id="firebaseStatus">Firebase: verificando...</div>
+  </aside>
+
+  <main class="content">
+    <section id="view-novo" class="view active">
+      <header class="hero">
+        <h2>NEXAR <span>SAAS FACTORY</span></h2>
+        <p>Transforme uma ideia em um SaaS com inteligência artificial.</p>
+      </header>
+
+      <div class="prompt-box">
+        <textarea id="ideaInput" placeholder="Descreva o SaaS que você quer criar..."></textarea>
+        <button id="createBtn" class="btn-primary">CRIAR SAAS</button>
+      </div>
+
+      <div id="progress" class="progress hidden">
+        <div class="progress-line" id="progressLine">🧠 Analisando ideia...</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div id="errorBox" class="error hidden"></div>
+
+      <section id="analysisSection" class="panel hidden">
+        <h3>ANÁLISE</h3>
+        <div id="analysisContent" class="analysis"></div>
+      </section>
+
+      <section id="filesSection" class="panel hidden">
+        <div class="panel-head">
+          <h3>ARQUIVOS GERADOS</h3>
+          <div class="tabs" id="fileTabs"></div>
+        </div>
+        <div class="editor-wrap">
+          <div class="editor-toolbar">
+            <button id="copyBtn" class="btn-ghost">COPIAR</button>
+            <button id="downloadBtn" class="btn-ghost">BAIXAR</button>
+            <span class="filename" id="currentFileName">index.html</span>
+          </div>
+          <pre class="editor"><code id="codeView" contenteditable="false"></code></pre>
+        </div>
+      </section>
+
+      <section id="previewSection" class="panel hidden">
+        <div class="panel-head">
+          <h3>PREVIEW</h3>
+          <button id="refreshPreview" class="btn-ghost">↻ Atualizar</button>
+        </div>
+        <iframe id="previewFrame" sandbox="allow-scripts allow-forms allow-modals"></iframe>
+      </section>
+
+      <section id="chatSection" class="panel hidden">
+        <h3>CHAT COM A IA</h3>
+        <div id="chatLog" class="chat-log"></div>
+        <div class="chat-input">
+          <input id="chatInput" type="text" placeholder="Ex: Deixe o sistema com tema escuro." />
+          <button id="chatSend" class="btn-primary">ENVIAR</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="view-projetos" class="view">
+      <h2>PROJETOS</h2>
+      <p class="muted">Projetos salvos no seu navegador (localStorage).</p>
+      <div id="projectsList" class="projects"></div>
+    </section>
+
+    <section id="view-upload" class="view">
+      <h2>UPLOAD DE IMAGEM</h2>
+      <p class="muted">Envie uma imagem para o ImgBB e receba a URL pública.</p>
+      <input type="file" id="imageInput" accept="image/*" />
+      <div id="uploadResult" class="upload-result hidden">
+        <img id="uploadPreview" alt="preview" />
+        <div class="url-box">
+          <input id="uploadUrl" readonly />
+          <button id="copyUrl" class="btn-ghost">COPIAR URL</button>
+        </div>
+      </div>
+      <div id="uploadError" class="error hidden"></div>
+    </section>
+
+    <section id="view-firebase" class="view">
+      <h2>CONFIGURAÇÃO FIREBASE</h2>
+      <p class="muted">Login, cadastro e persistência de projetos.</p>
+      <div class="card">
+        <h4>Autenticação</h4>
+        <input id="fbEmail" type="email" placeholder="E-mail" />
+        <input id="fbPass" type="password" placeholder="Senha" />
+        <div class="row">
+          <button id="fbLogin" class="btn-ghost">LOGIN</button>
+          <button id="fbRegister" class="btn-ghost">CADASTRO</button>
+          <button id="fbLogout" class="btn-ghost">SAIR</button>
+        </div>
+        <p id="fbUser" class="muted">Não autenticado.</p>
+      </div>
+      <div class="card">
+        <h4>Projetos</h4>
+        <button id="fbSave" class="btn-ghost">SALVAR PROJETO ATUAL</button>
+        <button id="fbLoad" class="btn-ghost">CARREGAR PROJETOS</button>
+        <div id="fbProjects" class="projects"></div>
+      </div>
+      <div id="fbWarning" class="warning hidden"></div>
+    </section>
+
+    <section id="view-config" class="view">
+      <h2>CONFIGURAÇÕES</h2>
+      <p class="muted">Chaves de API (visíveis nesta versão de teste).</p>
+      <div class="card">
+        <label>Groq API Key</label>
+        <input id="cfgGroq" />
+        <label>OpenRouter API Key</label>
+        <input id="cfgOpenRouter" />
+        <label>ImgBB API Key</label>
+        <input id="cfgImgbb" />
+        <button id="saveConfig" class="btn-primary">SALVAR</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
